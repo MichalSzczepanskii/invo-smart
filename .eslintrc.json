@@ -37,10 +37,38 @@
         "*.ts",
         "*.tsx"
       ],
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "parser": "@typescript-eslint/parser",
       "extends": [
         "plugin:@nx/typescript"
       ],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/member-ordering": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "no-useless-constructor": "off",
+        "@typescript-eslint/no-useless-constructor": "error",
+        "no-unused-expressions": "off",
+        "@typescript-eslint/no-unused-expressions": "error",
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "error",
+        "default-param-last": "off",
+        "@typescript-eslint/default-param-last": "error",
+        "array-bracket-newline": [
+          "error",
+          {
+            "minItems": 3
+          }
+        ],
+        "comma-dangle": [
+          "error",
+          "always-multiline"
+        ],
+        "dot-location": ["error", "property"],
+        "dot-notation": "error",
+        "eqeqeq": "error"
+      }
     },
     {
       "files": [
