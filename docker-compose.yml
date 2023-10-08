@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  api:
+    extends:
+      file: docker-compose.base.yml
+      service: app-base
+    command: npm run api:serve
+    ports:
+      - '3000:3000'
+
+volumes:
+  mono-node-modules: null
