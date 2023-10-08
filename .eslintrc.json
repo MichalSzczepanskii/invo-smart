@@ -1,19 +1,10 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nx"
-  ],
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -23,9 +14,7 @@
             "depConstraints": [
               {
                 "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
+                "onlyDependOnLibsWithTags": ["*"]
               }
             ]
           }
@@ -33,17 +22,10 @@
       }
     },
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "plugins": [
-        "@typescript-eslint"
-      ],
+      "files": ["*.ts", "*.tsx"],
+      "plugins": ["@typescript-eslint"],
       "parser": "@typescript-eslint/parser",
-      "extends": [
-        "plugin:@nx/typescript"
-      ],
+      "extends": ["plugin:@nx/typescript"],
       "rules": {
         "@typescript-eslint/member-ordering": "error",
         "@typescript-eslint/no-explicit-any": "error",
@@ -61,32 +43,19 @@
             "minItems": 3
           }
         ],
-        "comma-dangle": [
-          "error",
-          "always-multiline"
-        ],
+        "comma-dangle": ["error", "always-multiline"],
         "dot-location": ["error", "property"],
         "dot-notation": "error",
         "eqeqeq": "error"
       }
     },
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nx/javascript"
-      ],
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
       "rules": {}
     },
     {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
       "env": {
         "jest": true
       },
