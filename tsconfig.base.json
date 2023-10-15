@@ -17,7 +17,7 @@
     "paths": {
       "@invo-smart/derived-key": ["libs/derived-key/src/index.ts"],
       "@invo-smart/shared/data-access": ["libs/shared/data-access/src/index.ts"]
-    },
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

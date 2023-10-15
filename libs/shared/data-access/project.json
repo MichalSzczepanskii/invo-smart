@@ -18,7 +18,10 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/shared/data-access/**/*.ts", "libs/shared/data-access/package.json"]
+        "lintFilePatterns": [
+          "libs/shared/data-access/**/*.ts",
+          "libs/shared/data-access/package.json"
+        ]
       }
     },
     "test": {
