@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../shared/data-access/prisma/prisma.service';
+import { PrismaService } from '../../db/data-access/prisma.service';
 import { UserDto } from './user.dto';
 import * as bcrypt from 'bcrypt';
 import { DerivedKey } from '@invo-smart/derived-key';

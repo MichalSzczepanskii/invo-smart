@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
-import { PrismaService } from '../../shared/data-access/prisma/prisma.service';
+import { PrismaService } from '../../db/data-access/prisma.service';
 import { UserDto } from './user.dto';
 import { User } from '@invo-smart/shared/data-access';
 import { DerivedKey } from '@invo-smart/derived-key';

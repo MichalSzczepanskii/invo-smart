@@ -3,7 +3,7 @@ import { UsersController } from './users.controller';
 import { UserDto } from '../data-access/user.dto';
 import { UsersService } from '../data-access/users.service';
 import { User } from '@invo-smart/shared/data-access';
-import { PrismaService } from '../../shared/data-access/prisma/prisma.service';
+import { PrismaService } from '../../db/data-access/prisma.service';
 
 describe('UsersController', () => {
   let controller: UsersController;
