@@ -8,13 +8,13 @@ describe('Users', () => {
 
   afterEach(async () => {
     if (_.isEmpty(newUserIds)) return;
-    _.forEach(newUserIds, async id => {
+    for (const id of newUserIds) {
       await prisma.user.delete({
         where: {
           id,
         },
       });
-    });
+    }
     newUserIds.length = 0;
   });
 
