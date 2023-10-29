@@ -41,6 +41,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
 
+      - name: 'Create env file'
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
       - name: Run migrations
         run: npx prisma db push --force-reset && npx prisma db push
 
@@ -48,7 +52,7 @@ jobs:
         run: npm ci
 
       - name: Run API
-        run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx run api:serve:development&
+        run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx run api:serve:development 2>&1| tee api-log.txt &
 
       - name: Initialize the Nx Cloud distributed CI run
         run: npx nx-cloud start-ci-run
@@ -78,6 +82,9 @@ jobs:
             fi
           done
           exit 0
+      - name: Print logs from api
+        if: ${{ always() }}
+        run: cat api-log.txt
       - name: Stop all running agents for this CI run
         # It's important that we always run this step, otherwise in the case of any failures in preceding non-Nx steps, the agents will keep running and waste billable minutes
         if: ${{ always() }}

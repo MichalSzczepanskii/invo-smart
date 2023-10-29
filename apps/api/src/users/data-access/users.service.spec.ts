@@ -75,4 +75,21 @@ describe('UsersService', () => {
     expect(prismaService.user.create).toHaveBeenCalledWith({ data: userInput });
     expect(createdUser).toEqual(userOutput);
   });
+
+  it('should find one user by email', async () => {
+    const email = 'test@gmail.com';
+    const user: User = {
+      id: 0,
+      email: email,
+      name: '',
+      password: '',
+      emailVerifiedAt: undefined,
+      encryptionKey: '',
+    };
+    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(user);
+
+    const output = await service.findOneByEmail(email);
+
+    expect(output).toEqual(user);
+  });
 });

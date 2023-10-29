@@ -3,12 +3,14 @@ import { UserDto } from '../data-access/user.dto';
 import { UsersService } from '../data-access/users.service';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { UserCreatedResponse } from '../data-access/user-created.response';
+import { Public } from '../../shared/decorators/public.decorators';
 
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
+  @Public()
   @Post()
   @ApiCreatedResponse({
     description: 'The user has been successfully created.',

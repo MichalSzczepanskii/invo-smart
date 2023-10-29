@@ -24,4 +24,8 @@ export class UsersService {
 
     return this.prismaService.user.create({ data: user });
   }
+
+  async findOneByEmail(email: string) {
+    return this.prismaService.user.findUnique({ where: { email } });
+  }
 }

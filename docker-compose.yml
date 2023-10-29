@@ -12,6 +12,10 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
   api:
+    restart: unless-stopped
+    entrypoint: /app/dev-entrypoint.sh
+    environment:
+      NODE_ENV: dev
     extends:
       file: docker-compose.base.yml
       service: app-base
@@ -22,6 +26,7 @@ services:
       - '3000:3000'
   api-e2e:
     tty: true
+    entrypoint: /app/dev-entrypoint.sh
     environment:
       - HOST=api
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/invo-smart?schema=public
