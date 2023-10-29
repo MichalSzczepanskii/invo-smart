@@ -4,6 +4,7 @@ import { AuthDataAccessModule } from '../data-access/auth-data-access.module';
 import { AuthService } from '../data-access/auth.service';
 import { UnauthorizedException } from '@nestjs/common';
 import { SignInDto } from '../data-access/sign-in.dto';
+import { CoreModule } from '../../core/feature/core.module';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -11,7 +12,7 @@ describe('AuthController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AuthDataAccessModule],
+      imports: [CoreModule, AuthDataAccessModule],
       controllers: [AuthController],
     }).compile();
 
