@@ -41,6 +41,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
 
+      - name: 'Create env file'
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
       - name: Run migrations
         run: npx prisma db push --force-reset && npx prisma db push
 
