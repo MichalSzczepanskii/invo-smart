@@ -57,6 +57,8 @@ describe('auth', () => {
       const res = await axios.post('/api/auth/sign-in', { email, password });
       const iat = moment().unix();
       const exp = moment().add(60, 'minutes').unix();
+      console.log(res.data);
+      expect(res.data).toEqual({});
       expect(res.status).toEqual(201);
       expect(res.data.accessToken).toBeDefined();
       const payload = parseJwt(res.data.accessToken);
