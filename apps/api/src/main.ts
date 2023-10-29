@@ -18,7 +18,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const port = process.env.PORT || 3000;
-  const config = new DocumentBuilder().setTitle('Invo Smart').setVersion('1.0').build();
+  const config = new DocumentBuilder()
+    .setTitle('Invo Smart')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
   const document = SwaggerModule.createDocument(app, config);
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });

@@ -91,4 +91,17 @@ describe('UniqueValidator', () => {
       }),
     ).toEqual('user with the same email already exists');
   });
+
+  it('should return true if email value is not provided', async () => {
+    jest.spyOn(prismaService.user, 'count');
+    const result = await validator.validate(null, {
+      constraints: ['user', ''],
+      property: 'email',
+      value: null,
+      object: null,
+      targetName: 'UniqueValidator',
+    });
+    expect(result).toEqual(true);
+    expect(prismaService.user.count).not.toHaveBeenCalled();
+  });
 });

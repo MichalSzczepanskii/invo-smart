@@ -18,6 +18,9 @@ export class UniqueValidator implements ValidatorConstraintInterface {
 
   async validate(value: string, args: UniqueValidationArguments) {
     const [entityName, field = args.property] = args.constraints;
+
+    if (!value) return true;
+
     return (
       (await this.prismaService[entityName].count({
         where: {
