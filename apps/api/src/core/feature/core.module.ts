@@ -4,7 +4,7 @@ import { DbDataAccessModule } from '../../db/data-access/db-data-access.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DbDataAccessModule, ConfigModule.forRoot({ isGlobal: true })],
+  imports: [DbDataAccessModule, ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' })],
   controllers: [],
   providers: [UniqueValidator],
 })

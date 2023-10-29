@@ -5,6 +5,7 @@ import { parseJwt } from '../support/utils/parse-jwt';
 import { hashPassword } from '../support/utils/hash-password';
 import each from 'jest-each';
 import { invalidEmails } from '../support/invalid-emails';
+import moment from 'moment';
 
 describe('auth', () => {
   beforeAll(() => {
@@ -54,13 +55,16 @@ describe('auth', () => {
 
     it('should return access token if given valid credentials', async () => {
       const res = await axios.post('/api/auth/sign-in', { email, password });
+      const iat = moment().unix();
+      const exp = moment().add(60, 'minutes').unix();
       expect(res.status).toEqual(201);
       expect(res.data.accessToken).toBeDefined();
       const payload = parseJwt(res.data.accessToken);
       expect(payload).toEqual({
         id: createdUser.id,
         email,
-        iat: (new Date().getTime() / 1000) | 0,
+        iat,
+        exp,
         username,
       });
     });
