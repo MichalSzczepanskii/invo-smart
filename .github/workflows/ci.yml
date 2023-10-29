@@ -48,7 +48,7 @@ jobs:
         run: npm ci
 
       - name: Run API
-        run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx run api:serve:development& > api-log.txt
+        run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx run api:serve:development 2>&1| tee api-log.txt &
 
       - name: Initialize the Nx Cloud distributed CI run
         run: npx nx-cloud start-ci-run
