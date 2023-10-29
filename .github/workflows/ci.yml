@@ -78,6 +78,9 @@ jobs:
             fi
           done
           exit 0
+      - name: Print logs from api
+        if: ${{ always() }}
+        run: NX_CLOUD_DISTRIBUTED_EXECUTION=false npx nx view-logs
       - name: Stop all running agents for this CI run
         # It's important that we always run this step, otherwise in the case of any failures in preceding non-Nx steps, the agents will keep running and waste billable minutes
         if: ${{ always() }}
