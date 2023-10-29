@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from '../data-access/prisma.service';
+import { DbDataAccessModule } from '../data-access/db-data-access.module';
 
 @Module({
-  providers: [PrismaService],
-  exports: [PrismaService],
+  imports: [DbDataAccessModule],
 })
 export class DbModule {}

@@ -12,6 +12,10 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
   api:
+    restart: unless-stopped
+    entrypoint: /app/dev-entrypoint.sh
+    environment:
+      NODE_ENV: dev
     extends:
       file: docker-compose.base.yml
       service: app-base

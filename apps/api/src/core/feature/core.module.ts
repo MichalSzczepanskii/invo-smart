@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { UniqueValidator } from '../utils/validators/unique-validator';
-import { DbModule } from '../../db/feature/db.module';
+import { DbDataAccessModule } from '../../db/data-access/db-data-access.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DbModule],
+  imports: [DbDataAccessModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [],
   providers: [UniqueValidator],
 })
