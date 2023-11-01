@@ -17,4 +17,21 @@ model User {
   password String
   encryptionKey String
   emailVerifiedAt DateTime? @db.Timestamp()
+  oAuth2Token OAuth2Token?
+}
+
+model Service {
+  id Int @default(autoincrement()) @id
+  name String
+  oAuth2Token OAuth2Token[]
+}
+
+model OAuth2Token {
+  id Int @default(autoincrement()) @id
+  refreshToken String
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+  service Service @relation(fields: [serviceId], references: [id])
+  serviceId Int
+  @@unique([userId, serviceId])
 }

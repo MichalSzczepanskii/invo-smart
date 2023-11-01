@@ -12,6 +12,10 @@ async function main() {
       emailVerifiedAt: null,
     },
   });
+
+  await prisma.service.createMany({
+    data: [{ id: 1, name: 'GOOGLE_CALENDAR' }],
+  });
 }
 
 main()

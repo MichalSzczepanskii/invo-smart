@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UserCreatedResponse {
+export class EntityCreatedResponse {
   @ApiProperty()
   id: number;
 }

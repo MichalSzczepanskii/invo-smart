@@ -2,7 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { UserDto } from '../data-access/user.dto';
 import { UsersService } from '../data-access/users.service';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
-import { UserCreatedResponse } from '../data-access/user-created.response';
+import { EntityCreatedResponse } from '../../shared/responses/entity-created.response';
 import { Public } from '../../shared/decorators/public.decorators';
 
 @ApiTags('users')
@@ -14,7 +14,7 @@ export class UsersController {
   @Post()
   @ApiCreatedResponse({
     description: 'The user has been successfully created.',
-    type: UserCreatedResponse,
+    type: EntityCreatedResponse,
   })
   async register(@Body() newUser: UserDto) {
     const user = await this.usersService.createUser(newUser);
