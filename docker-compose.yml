@@ -25,14 +25,17 @@ services:
     ports:
       - '3000:3000'
   api-e2e:
+    build:
+      context: .
+      dockerfile: api-e2e.Dockerfile
     tty: true
     entrypoint: /app/dev-entrypoint.sh
+    volumes:
+      - ./:/app
+      - mono-node-modules:/app/node_modules
     environment:
       - HOST=api
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/invo-smart?schema=public
-    extends:
-      file: docker-compose.base.yml
-      service: app-base
     command: npx nx run api-e2e:e2e
     depends_on:
       - api

@@ -38,22 +38,20 @@ describe('google-calendar', () => {
       );
     });
 
-    if (process.env.E2E_RUN_NIGHTMARE_TEST === 'true') {
-      it('should save refresh_token', async () => {
-        const result = await generateAuthCode();
-        const authCode = new URL(result).searchParams.get('code');
-        const res = await axios.post('/api/google-calendar/save-token', {
-          code: authCode,
-        });
-        const token = await prisma.oAuth2Token.findUnique({
-          where: {
-            userId: parseJwt(accessToken).id,
-            serviceId: ServiceEnum.GOOGLE_CALENDAR,
-          },
-        });
-        expect(res.data.id).toEqual(token.id);
-        expect(res.status).toEqual(201);
-      }, 15000);
-    }
+    it('should save refresh_token', async () => {
+      const result = await generateAuthCode();
+      const authCode = new URL(result).searchParams.get('code');
+      const res = await axios.post('/api/google-calendar/save-token', {
+        code: authCode,
+      });
+      const token = await prisma.oAuth2Token.findUnique({
+        where: {
+          userId: parseJwt(accessToken).id,
+          serviceId: ServiceEnum.GOOGLE_CALENDAR,
+        },
+      });
+      expect(res.data.id).toEqual(token.id);
+      expect(res.status).toEqual(201);
+    }, 30000);
   });
 });

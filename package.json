@@ -28,6 +28,9 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "nightmare": "^3.0.2",
+    "puppeteer": "^20.0.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
