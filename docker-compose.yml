@@ -19,7 +19,7 @@ services:
     extends:
       file: docker-compose.base.yml
       service: app-base
-    command: npm run api:serve
+    command: npx nx run api:serve:docker
     depends_on:
       - db
     ports:

@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@invo-smart/asymetric-encryption": ["libs/asymetric-encryption/src/index.ts"],
+      "@invo-smart/asymmetric-encryption": ["libs/asymmetric-encryption/src/index.ts"],
       "@invo-smart/derived-key": ["libs/derived-key/src/index.ts"],
       "@invo-smart/shared/data-access": ["libs/shared/data-access/src/index.ts"]
     }

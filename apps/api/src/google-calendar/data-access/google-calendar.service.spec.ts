@@ -5,6 +5,7 @@ import { Auth, google } from 'googleapis';
 import { DbModule } from '../../db/feature/db.module';
 import { PrismaService } from '../../db/data-access/prisma.service';
 import { OAuth2TokenModel, ServiceEnum } from '@invo-smart/shared/data-access';
+import { AsymmetricEncryption } from '@invo-smart/asymmetric-encryption';
 
 jest.mock('googleapis');
 
@@ -82,26 +83,34 @@ describe('GoogleCalendarService', () => {
       refresh_token: 'test',
     };
     const userId = 1;
+    const encryptedToken = Buffer.from('test');
     const mockToken: OAuth2TokenModel = {
       id: 1,
       userId,
-      refreshToken: credentials.refresh_token,
+      refreshToken: encryptedToken.toString('base64'),
       serviceId: ServiceEnum.GOOGLE_CALENDAR,
     };
+    jest.spyOn(AsymmetricEncryption, 'publicEncrypt').mockReturnValue(encryptedToken);
     jest.spyOn(prismaService.oAuth2Token, 'upsert').mockResolvedValue(mockToken);
+
     const token = await calendarService.saveToken(credentials, userId);
+
+    expect(AsymmetricEncryption.publicEncrypt).toHaveBeenCalledWith(
+      credentials.refresh_token,
+      Buffer.from(process.env.AE_PUBLIC_KEY, 'base64').toString('ascii'),
+    );
     expect(prismaService.oAuth2Token.upsert).toHaveBeenCalledWith({
       where: {
         userId: userId,
         serviceId: ServiceEnum.GOOGLE_CALENDAR,
       },
       update: {
-        refreshToken: credentials.refresh_token,
+        refreshToken: encryptedToken.toString('base64'),
       },
       create: {
         serviceId: ServiceEnum.GOOGLE_CALENDAR,
         userId: userId,
-        refreshToken: credentials.refresh_token,
+        refreshToken: encryptedToken.toString('base64'),
       },
     });
     expect(token).toEqual(mockToken);

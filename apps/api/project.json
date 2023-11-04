@@ -37,7 +37,8 @@
         },
         "production": {
           "buildTarget": "api:build:production"
-        }
+        },
+        "docker": {}
       }
     },
     "lint": {
