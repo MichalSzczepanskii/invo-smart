@@ -14,5 +14,4 @@ WORKDIR /app
 COPY . .
 ARG NX_NON_NATIVE_HASHER=true
 RUN npm install -g npm@10.2.0
-RUN npm install puppeteer@20.0.0
 RUN npm install

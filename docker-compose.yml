@@ -36,7 +36,7 @@ services:
     environment:
       - HOST=api
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/invo-smart?schema=public
-    command: npx nx run api-e2e:e2e
+    command: npx nx run api-e2e:e2e --configuration=docker
     depends_on:
       - api
   tests:
@@ -44,7 +44,7 @@ services:
     extends:
       file: docker-compose.base.yml
       service: app-base
-    command: npm run test
+    command: npx nx run-many --target=test --parallel=3 --code-coverage --configuration=docker
     depends_on:
       - db
 volumes:

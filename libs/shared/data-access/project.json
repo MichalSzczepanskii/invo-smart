@@ -12,6 +12,9 @@
         "main": "libs/shared/data-access/src/index.ts",
         "tsConfig": "libs/shared/data-access/tsconfig.lib.json",
         "assets": ["libs/shared/data-access/*.md"]
+      },
+      "configurations": {
+        "docker": {}
       }
     },
     "lint": {

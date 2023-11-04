@@ -21,7 +21,8 @@
       },
       "configurations": {
         "development": {},
-        "production": {}
+        "production": {},
+        "docker": {}
       }
     },
     "serve": {
@@ -57,7 +58,8 @@
         "ci": {
           "ci": true,
           "codeCoverage": true
-        }
+        },
+        "docker": {}
       }
     }
   },
